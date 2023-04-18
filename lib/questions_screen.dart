@@ -3,6 +3,7 @@ import 'package:adv_quiz_app/answer_button.dart';
 import 'package:adv_quiz_app/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
+  
   const QuestionsScreen({super.key});
 
   @override
@@ -10,9 +11,18 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  var currentQuestionIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -34,7 +44,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               (answers) {
                 return AnswerButton(
                   answerText: answers,
-                  onTap: () {},
+                  onTap: answerQuestion,
                 );
               },
             ),
